@@ -2,11 +2,90 @@
 
 SparseTrack Dataset is a sparse inertial motion capture dataset designed for real-time human motion reconstruction from sparse IMUs.
 
-The dataset contains:
+The dataset was constructed as part of the SparseTrack framework for learning robust distal-proximal kinematic joint decoupling under sparse sensor observations. The dataset combines:
 
-- raw reconstructed IMU streams collected using Movella sensors,
-- processed VT-NMD formatted inertial representations,
-- preprocessing and reconstruction utilities for dataset reproducibility.
+- natural activities of daily living (ADL) motion data derived from the Virginia Tech Natural Motion Dataset (VT-NMD),
+- sparse inertial representations extracted from full-body inertial motion capture recordings,
+- and a curated set of high-frequency distal isolation motions recorded specifically to mitigate Kinematic Bleed-Through (KBT) problem.
+
+The dataset is intended for:
+
+- sparse inertial motion capture,
+- real-time pose reconstruction,
+- physics-informed sequence modeling,
+- inertial representation learning,
+- and kinematic ambiguity resolution under sparse observations.
+
+---
+
+# Dataset Motivation
+
+Sparse IMU motion capture systems often suffer from a phenomenon known as **Kinematic Bleed-Through (KBT)**, where rapid distal joint motions incorrectly induce spurious proximal joint activations during reconstruction.
+
+This issue becomes especially prominent under sparse sensing constraints, where multiple anatomically valid proximal joint configurations may correspond to similar distal inertial observations.
+
+To explicitly address this challenge, the SparseTrack Dataset incorporates a supplementary motion corpus referred to as **Hard Negative Injection Data**. These recordings contain statistically rare but biomechanically valid distal isolation motions that are typically underrepresented in conventional ADL datasets.
+
+Examples include:
+
+- locked-humerus elbow flexion,
+- constrained wrist pronation and supination,
+- fixed-thigh seated knee extensions,
+- and other high-frequency distal articulation tasks.
+
+These motions were recorded under constrained proximal stability conditions in order to explicitly teach the model to decouple distal oscillations from false proximal activations.
+
+---
+
+# Hybrid Dataset Composition
+
+The SparseTrack Dataset is constructed from two complementary sources.
+
+## 1. Natural Motion Corpus
+
+The primary motion corpus is derived from the Virginia Tech Natural Motion Dataset (VT-NMD), consisting of approximately 40 hours of unscripted activities of daily living (ADLs) captured using a full-body Xsens MVN Link inertial motion capture suit.
+
+The original dataset contains:
+
+- locomotion,
+- household activities,
+- object interaction,
+- physical exercises,
+- and unconstrained natural human motion.
+
+From the full-body recordings, a sparse sensor mask was applied to retain only the target sparse sensing locations used by SparseTrack.
+
+---
+
+## 2. Hard Negative Injection Dataset
+
+A supplementary motion corpus was recorded to explicitly capture high-frequency distal isolation dynamics.
+
+These recordings were designed to:
+
+- reduce kinematic ambiguity,
+- improve distal-proximal decoupling,
+- and increase robustness to sparse observation artifacts.
+
+The hard negative recordings do not aim to maximize demographic diversity or motion coverage. Instead, they intentionally target challenging kinematic corner cases that are statistically rare in natural ADL datasets but critical for stable sparse motion reconstruction.
+
+---
+
+# Sparse Sensor Configuration
+
+SparseTrack operates using sparse inertial observations obtained from the following target body segments:
+
+- left upper arm,
+- right upper arm,
+- left forearm,
+- right forearm,
+- left thigh,
+- right thigh,
+- left shank,
+- right shank,
+- torso.
+
+These sparse observations are transformed into calibrated local inertial representations for downstream motion reconstruction.
 
 ---
 
@@ -47,7 +126,7 @@ Each raw CSV contains:
 - quaternion orientation,
 - free acceleration,
 - angular velocity,
-- timestamp metadata.
+- and timestamp metadata.
 
 Example schema:
 
@@ -88,7 +167,7 @@ The processed representations contain:
 - calibrated segment orientations,
 - angular velocities,
 - free accelerations,
-- frame-wise inertial features.
+- and frame-wise inertial features.
 
 ---
 
@@ -139,28 +218,10 @@ Extracts calibrated VT-NMD representations directly from MVNX motion capture rec
 ## Raw → Processed Conversion
 
 ```text
-scripts/raw_to_processed.py
+scripts/extract_vtnmd_streams_from_movella.py
 ```
 
 Converts raw Movella-compatible IMU streams into canonical VT-NMD processed representations.
-
----
-
-## Processed → Raw Reconstruction
-
-```text
-reconstruct_raw.py
-```
-
-Reconstructs Movella-compatible raw IMU streams from processed VT-NMD representations.
-
----
-
-# Notes
-
-- Minor floating-point deviations may exist between reconstructed and original processed streams due to quaternion normalization and calibration recomputation.
-- Quaternion sign ambiguity may produce mathematically equivalent orientations with opposite signs.
-- All CSV files are stored using fixed floating-point precision.
 
 ---
 
