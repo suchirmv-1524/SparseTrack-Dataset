@@ -98,14 +98,17 @@ The recordings specifically emphasized constrained distal isolation dynamics in 
 
 Representative motion categories included:
 
-- elbow flexion-extension,
+- isolated elbow flexion-extension,
 - forearm pronation-supination,
 - shoulder flexion and abduction,
 - constrained wrist rotations,
 - seated knee extensions,
-- reaching motions,
+- overhead reaching motions,
+- cross-body reaching tasks,
+- load-bearing stabilization sequences,
+- locomotion, stepping, and weight-transfer transitions,
 - object interaction gestures,
-- and dynamic stabilization sequences.
+- and dynamic multi-limb coordination tasks.
 
 To enforce distal-proximal decoupling explicitly, constrained recordings were performed under proximal stability conditions, ensuring minimal proximal joint activation during high-frequency distal articulation tasks.
 
@@ -223,32 +226,6 @@ q_calibrated(t) = q_offset ⊗ q_global(t)
 ```
 
 where the offset quaternion is obtained from the initial T-pose frame.
-
----
-
-# Continuous Time-Series Validation
-
-To evaluate temporal consistency under dynamic motion, continuous time-series reconstruction analysis was performed on highly dynamic multi-limb interaction sequences.
-
-The evaluation focused on:
-
-- proximal joint stability,
-- temporal continuity,
-- and suppression of high-frequency Kinematic Bleed-Through (KBT).
-
-The reconstructed trajectories demonstrated stable proximal joint predictions even under rapid distal perturbations and asynchronous multi-joint coordination. Representative evaluation sequences included asynchronous reaching, overhead arm elevation, compensatory upper-body stabilization, forward stepping, and load-bearing lower-body transitions involving simultaneous upper-limb and lower-limb articulation.
-
-Across both upper-body and lower-body sequences, the reconstructed motions preserved:
-
-- smooth temporal continuity,
-- physically plausible directional transitions,
-- compensatory stabilization behavior,
-- forward stepping and recovery dynamics,
-- and stable load-bearing transitions,
-
-without introducing high-frequency proximal jitter artifacts.
-
-These observations validate the dataset’s suitability for learning robust sparse inertial reconstruction under dynamic real-world motion conditions.
 
 ---
 
