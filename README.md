@@ -4,15 +4,15 @@ SparseTrack Dataset is a sparse inertial motion capture dataset designed for rea
 
 The dataset was constructed as part of the SparseTrack framework for learning robust distal-proximal kinematic joint decoupling under sparse sensor observations. The hybrid dataset combines:
 
-- natural activities of daily living (ADL) motion data derived from the Virginia Tech Natural Motion Dataset (VT-NMD),
+- natural activities of daily living (ADL) motion data derived from the Virginia Tech Natural Motion Dataset (VT-NMD) [1],
 - sparse inertial representations extracted from full-body inertial motion capture recordings,
-- and a curated set of high-frequency distal isolation motions recorded specifically to mitigate the Kinematic Bleed-Through (KBT) problem.
+- and a curated set of high-frequency distal joint isolation motions recorded specifically to mitigate the Kinematic Bleed-Through (KBT) problem.
 
 The dataset is intended for:
 
 - sparse inertial motion capture,
 - real-time pose reconstruction,
-- physics-informed sequence modeling,
+- physics-informed motion sequence modeling,
 - inertial representation learning,
 - and kinematic ambiguity resolution under sparse observations.
 
@@ -20,7 +20,7 @@ The dataset is intended for:
 
 # Dataset Motivation
 
-Sparse IMU motion capture systems often suffer from a phenomenon known as **Kinematic Bleed-Through (KBT)**, where rapid distal joint motions incorrectly induce spurious proximal joint activations during reconstruction.
+Sparse IMU motion capture systems often suffer from a phenomenon known as **Kinematic Bleed-Through (KBT)**, where rapid distal joint motions incorrectly induce spurious proximal joint activations during motion reconstruction.
 
 This issue becomes especially prominent under sparse sensing constraints, where multiple anatomically valid proximal joint configurations may correspond to similar distal inertial observations.
 
@@ -69,13 +69,13 @@ These recordings were designed to:
 - improve distal-proximal decoupling,
 - and increase robustness to sparse observation artifacts.
 
-The hard negative recordings do not aim to maximize demographic diversity or motion coverage. Instead, they intentionally target challenging kinematic corner cases that are statistically rare in natural ADL datasets but critical for stable sparse motion reconstruction.
+The hard negative recordings do not aim to maximize demographic diversity or motion coverage. Instead, they intentionally target challenging kinematic edge cases that are statistically rare in natural ADL datasets but critical for stable sparse motion reconstruction.
 
 ---
 
 # Experimental Data Collection Protocol
 
-The supplementary hard negative motion corpus was recorded using a sparse upper-body and lower-body inertial sensing setup using Movella IMUs.
+The supplementary hard negative motion corpus was recorded using a sparse upper-body and lower-body inertial sensing setup using Movella IMUs [2].
 
 For each limb, sensors were mounted on:
 
