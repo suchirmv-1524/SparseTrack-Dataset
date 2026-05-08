@@ -1,4 +1,4 @@
-# SparseTrack Dataset
+<h1 align="center">SparseTrack Dataset</h1>
 
 SparseTrack Dataset is a sparse inertial motion capture dataset designed for real-time human motion reconstruction from sparse IMUs.
 
@@ -54,6 +54,8 @@ The original dataset contains:
 - and unconstrained natural human motion.
 
 From the full-body recordings, a sparse sensor mask was applied to retain only the target sparse sensing locations used by SparseTrack.
+
+The original VT-NMD recordings are not redistributed as part of this repository. SparseTrack utilizes VT-NMD as the primary external ADL motion corpus during training and evaluation, **while this repository specifically releases the supplementary hard negative recordings and their VT-NMD-compatible sparse inertial representations**.
 
 ---
 
@@ -139,7 +141,6 @@ SparseTrack-Dataset/
 ├── raw/
 ├── processed/
 ├── scripts/
-├── reconstruct_raw.py
 └── README.md
 ```
 
@@ -147,7 +148,7 @@ SparseTrack-Dataset/
 
 # Raw IMU Streams
 
-The `raw/` directory contains raw IMU streams collected from Movella Xsens DOT sensors organized iteration-wise.
+The `raw/` directory contains raw IMU streams collected from Movella Xsens DOT sensors organized iteration-wise. These recordings correspond exclusively to the supplementary hard negative motion corpus introduced by SparseTrack.
 
 Each iteration contains IMU streams for 9 joints:
 
@@ -175,7 +176,7 @@ Each raw CSV contains:
 
 # Processed VT-NMD Representation
 
-The `processed/` directory contains calibrated VT-NMD formatted inertial representations used by SparseTrack.
+The `processed/` directory contains calibrated VT-NMD-compatible inertial representations corresponding to the supplementary hard negative recordings released in this repository.
 
 Each iteration contains:
 
@@ -248,6 +249,16 @@ scripts/extract_vtnmd_streams_from_movella.py
 ```
 
 Converts raw Movella-compatible IMU streams into canonical VT-NMD processed representations.
+
+---
+
+# References
+
+[1] Geissinger, J.H.; Asbeck, A.T. *Motion Inference Using Sparse Inertial Sensors, Self-Supervised Learning, and a New Dataset of Unscripted Human Motion*. Sensors 2020, 20, 6330.
+
+[2] Movella. *Xsens DOT: Precision Wearable Sensor Platform*. Movella, 2023. Available online: <https://www.xsens.com/wearables/xsens-dot>
+
+[3] Movella. *Xsens DOT User Manual*. Document XD0502P, Rev. 1, Movella, 2023. Available online: <https://www.movella.com/hubfs/Xsens%20DOT%20User%20Manual.pdf>
 
 ---
 
