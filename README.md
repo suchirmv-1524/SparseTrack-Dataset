@@ -18,6 +18,24 @@ The dataset is intended for:
 
 ---
 
+---
+
+# Related Publication
+
+The SparseTrack Dataset was developed as part of the **SparseTrack** framework for real-time human motion reconstruction from sparse inertial measurement units (IMUs).
+
+The associated peer-reviewed publication is:
+
+> **Adithya Balasubramanyam, Suchir Murali Velpanur, Sushma Edhala Jeevarathnam, Tejasree Chekuri Jayachandra, Prasad Honnavalli, and Gowri Srinivasa.**  
+> *SparseTrack: A Physics-Informed Transformer Framework for Real-Time Human Motion Reconstruction from Sparse IMUs.*  
+> **Sensors**, 2026, 26(10), 3262.  
+> DOI: [10.3390/s26103262](https://doi.org/10.3390/s26103262)  
+> Full article: [MDPI Sensors](https://www.mdpi.com/1424-8220/26/10/3262)
+
+The publication describes the SparseTrack framework, its sparse inertial sensing configuration, hard negative motion corpus, physics-informed learning approach, and real-time biomechanical digital twin.
+
+---
+
 # Dataset Motivation
 
 Sparse IMU motion capture systems often suffer from a phenomenon known as **Kinematic Bleed-Through (KBT)**, where rapid distal joint motions incorrectly induce spurious proximal joint activations during motion reconstruction.
@@ -251,6 +269,27 @@ scripts/extract_vtnmd_streams_from_movella.py
 Converts raw Movella-compatible IMU streams into canonical VT-NMD processed representations.
 
 ---
+
+# Citing SparseTrack
+
+If you use the SparseTrack Dataset or the associated framework in your research, please cite the following publication:
+
+```bibtex
+@article{Balasubramanyam2026SparseTrack,
+  author  = {Balasubramanyam, Adithya and Velpanur, Suchir Murali and Jeevarathnam, Sushma Edhala and Jayachandra, Tejasree Chekuri and Honnavalli, Prasad and Srinivasa, Gowri},
+  title   = {SparseTrack: A Physics-Informed Transformer Framework for Real-Time Human Motion Reconstruction from Sparse IMUs},
+  journal = {Sensors},
+  year    = {2026},
+  volume  = {26},
+  number  = {10},
+  pages   = {3262},
+  doi     = {10.3390/s26103262},
+  url     = {https://doi.org/10.3390/s26103262}
+}
+```
+
+**Published article:** [SparseTrack: A Physics-Informed Transformer Framework for Real-Time Human Motion Reconstruction from Sparse IMUs](https://doi.org/10.3390/s26103262)
+
 
 # References
 
